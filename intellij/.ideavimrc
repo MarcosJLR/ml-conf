@@ -1,0 +1,36 @@
+set relativenumber
+set number
+
+set hlsearch
+set incsearch
+set highlightedyank
+set surround
+
+set ideamarks
+set ideajoin
+
+set clipboard+=unnamed
+
+imap jk <Esc>
+imap kj <Esc>
+
+nnoremap ,e :action SearchEverywhere<CR>
+nnoremap ,g :action FindInPath<CR>
+nnoremap ,s :action FileStructurePopup<CR>
+nnoremap <C-p> :action GotoFile<CR>
+
+nnoremap U :action FindUsages<CR>
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gb :action JumpToLastChange<CR>
+
+nnoremap <C-CR> :action ShowIntentionActions<CR>
+nnoremap == :action ReformatCode<CR>
+
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-n> :nohl<CR>
