@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/cdiamond/.oh-my-zsh"
+export ZSH="/home/Marco/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,7 +71,6 @@ ZSH_THEME="skaro-custom"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    archlinux 
     docker
     docker-compose
     emoji
@@ -80,6 +79,7 @@ plugins=(
     themes
     vi-mode
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -125,10 +125,32 @@ alias gadd='git add'
 alias gcomm='git commit -m'
 alias gch='git checkout'
 alias glog='git log --oneline'
+alias gpush='git push'
 
 # Misc
 alias get_window_class="xprop | grep WM_CLASS | awk '{ print $4 }'"
 alias cdd='cd $(fd --type directory --hidden | fzf --layout=reverse); ls'
 alias pingg='ping 8.8.8.8'
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
+alias k='kubectl'
 
 xset r rate 300 60
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+alias c='g++ -g -O2 -static -Wall -DLOCAL -std=gnu++17'
+alias v='cp ~/.vimrc_cp ~/.vimrc && vim'
+alias vv='cp ~/.vimrc_full ~/.vimrc && vim'
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+

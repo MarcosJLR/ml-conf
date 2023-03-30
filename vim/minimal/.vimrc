@@ -1,37 +1,13 @@
-set number relativenumber
-syntax on
-colorscheme default
-set tabstop=4
-set autoindent
-set expandtab
-set softtabstop=4
-set clipboard=unnamedplus
+set cin aw ai is ts=4 sw=4 tm=500 nu rnu noeb ru cb=unnamedplus
+colo darkblue | sy on | im jk <esc>
+no <C-j> <C-w>j
+no <C-h> <C-w>h
+no <C-k> <C-w>k
+no <C-l> <C-w>l
 
-imap jk <Esc>
-imap kj <Esc>
+no <leader>cmp :w <bar> !g++ -g -O2 -static -Wall -Wno-unused-result -std=gnu++17 % -o %:r <CR>
+no <leader>ri :!./%:r < in<CR>
+no <leader>rc :!./%:r<CR>
+no <leader>rr :!xclip -o > clipin && ./%:r < clipin<CR>
 
-inoremap {          {}<Left>
-inoremap {<CR>      {<CR>}<Esc>O
-inoremap <expr> }   strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-
-inoremap (          ()<Left>
-inoremap <expr> )   strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-
-inoremap [          []<Left>
-inoremap <expr> ]   strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-
-inoremap <expr> '   strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
-inoremap <expr> "   strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
-
-nnoremap <C-j> <C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-nnoremap <leader>cmp :w <bar> !g++ -O2 -Wall -DLOCAL -std=c++17 % -o %:r <CR>
-nnoremap <leader>c11 :w <bar> !g++ -O2 -Wall -DLOCAL -std=c++11 % -o %:r <CR>
-nnoremap <leader>ri :!./%:r < in<CR>
-nnoremap <leader>rc :!./%:r<CR>
-nnoremap <leader>rr :!xsel -b > clipin && ./%:r < clipin <CR>
-
-set showcmd
+ca hash w !cpp -dD -P -fpreprocessed \| tr -d '[:space:]' \| md5sum \| cut -c-6
